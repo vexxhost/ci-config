@@ -5,7 +5,8 @@
         - zuul-base-jobs-tox-linters
     gate:
       jobs:
-        - noop
+        - zuul-tox-docs
+        - zuul-base-jobs-tox-linters
     promote:
       jobs:
         - zuul-promote-docs
