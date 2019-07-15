@@ -1,0 +1,11 @@
+- project:
+    check:
+      jobs:
+        - zuul-tox-docs
+        - zuul-base-jobs-tox-linters
+    gate:
+      jobs:
+        - noop
+    promote:
+      jobs:
+        - zuul-promote-docs
