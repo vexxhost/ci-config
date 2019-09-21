@@ -11,12 +11,3 @@
     # This roles copies the ansible inventory to zuul-info/
     # for debugging purposes
     - log-inventory
-  tasks:
-  - name: Install Python dependencies
-    become: true
-    apt:
-      name:
-      - python3-pip
-      - python3-tox
-      state: present
-      update_cache: true
