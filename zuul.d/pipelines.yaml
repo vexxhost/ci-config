@@ -1,0 +1,24 @@
+---
+- pipeline:
+    name: check
+    manager: independent
+    precedence: low
+    trigger:
+      github:
+        - event: pull_request
+          action:
+            - opened
+            - changed
+            - reopened
+        - event: pull_request
+          action: comment
+          comment: (?i)^\s*recheck\s*$
+    start:
+      github:
+        status: pending
+    success:
+      github:
+        status: success
+    failure:
+      github:
+        status: failure
