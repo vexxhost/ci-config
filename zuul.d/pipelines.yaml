@@ -22,3 +22,44 @@
     failure:
       github:
         status: failure
+
+- pipeline:
+    name: gate
+    manager: dependent
+    precedence: high
+    require:
+      github.com:
+        review:
+          - permission: write
+            type: approved
+        status: "vexxhost-zuul-demo\\[bot\\]:default/check:success"
+        open: True
+        current-patchset: True
+    trigger:
+      github.com:
+        - event: pull_request_review
+          action: submitted
+          state: approved
+        - event: pull_request
+          action: comment
+          comment: (?i)^\s*lgtm\s*$
+        - event: pull_request_review
+          action: submitted
+          state: approved
+        - event: pull_request_review
+          action: dismissed
+          state: request_changes
+        - event: pull_request
+          action: status
+          status: "vexxhost-zuul-demo\\[bot\\]:default/check:success"
+    start:
+      github:
+        status: pending
+    success:
+      github:
+        status: success
+    failure:
+      github:
+        status: failure
+    window-floor: 20
+    window-increase-factor: 2
