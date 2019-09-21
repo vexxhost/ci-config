@@ -1,6 +1,7 @@
 - job:
     name: base
     parent: null
+    nodeset: ubuntu-bionic
     description: |
       The recommended base job.
 
@@ -18,6 +19,7 @@
 - job:
     name: base-test
     parent: null
+    nodeset: ubuntu-bionic
     description: |
       A job to test changes to the base job without disturbing the
       main job in production.  Not for general use.
