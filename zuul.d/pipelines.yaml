@@ -17,9 +17,11 @@
       github:
         status: pending
     success:
+      sql:
       github:
         status: success
     failure:
+      sql:
       github:
         status: failure
 
@@ -56,9 +58,11 @@
       github:
         status: pending
     success:
+      sql:
       github:
         status: success
     failure:
+      sql:
       github:
         status: failure
     window-floor: 20
