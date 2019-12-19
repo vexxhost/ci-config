@@ -1,12 +1,6 @@
 ---
 - nodeset:
-    name: centos-7
+    name: debian-buster
     nodes:
-      - name: centos-7
-        label: centos-7
-
-- nodeset:
-    name: ubuntu-bionic
-    nodes:
-      - name: ubuntu-bionic
-        label: ubuntu-bionic
+      - name: debian-buster
+        label: debian-buster
