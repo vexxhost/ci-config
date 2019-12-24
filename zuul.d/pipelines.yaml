@@ -20,6 +20,7 @@
       sql:
       github:
         status: success
+        review: approve
     failure:
       sql:
       github:
