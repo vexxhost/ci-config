@@ -35,23 +35,17 @@
         status: "vexxhost-ci\\[bot\\]:.*/check:success"
         open: True
         current-patchset: True
-        review:
-        - type: approved
-          permission: write
+        label:
+        - review/approved
     trigger:
       github:
-        - event: pull_request_review
-          action: submitted
-          state: approved
-        - event: pull_request
-          action: comment
-          comment: (?i)^\s*lgtm\s*$
-        - event: pull_request
-          action: comment
-          comment: (?i)^\s*shipit\s*$
         - event: pull_request
           action: status
           status: "vexxhost-ci\\[bot\\]:.*/check:success"
+        - event: pull_request
+          action: labeled
+          label:
+          - review/approved
     start:
       github:
         status: pending
