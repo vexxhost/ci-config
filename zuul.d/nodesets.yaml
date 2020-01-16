@@ -3,4 +3,22 @@
     name: debian-buster
     nodes:
       - name: debian-buster
-        label: debian-buster
+        label: debian-buster-1c-1g
+
+- nodeset:
+    name: debian-buster-1c-1g
+    nodes:
+      - name: debian-buster
+        label: debian-buster-1c-1g
+
+- nodeset:
+    name: debian-buster-2c-2g
+    nodes:
+      - name: debian-buster
+        label: debian-buster-2c-2g
+
+- nodeset:
+    name: debian-buster-4c-4g
+    nodes:
+      - name: debian-buster
+        label: debian-buster-4c-4g
