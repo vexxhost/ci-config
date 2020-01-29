@@ -3,7 +3,22 @@
     name: check
     manager: independent
     precedence: low
+    require:
+      gerrithub:
+        open: True
+        current-patchset: True
     trigger:
+      gerrithub:
+        - event: patchset-created
+        - event: change-restored
+        - event: comment-added
+          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*recheck
+        - event: comment-added
+          require-approval:
+            - Verified: [-1, -2]
+              username: vexxhost-cd
+          approval:
+            - Workflow: 1
       github:
         - event: pull_request
           action:
@@ -19,10 +34,14 @@
         comment: false
     success:
       sql:
+      gerrithub:
+        Verified: 1
       github:
         status: success
     failure:
       sql:
+      gerrithub:
+        Verified: -1
       github:
         status: failure
 
@@ -31,6 +50,13 @@
     manager: dependent
     precedence: high
     require:
+      gerrithub:
+        open: True
+        current-patchset: True
+        approval:
+          - Verified: [1, 2]
+            username: vexxhost-cd
+          - Workflow: 1
       github:
         status: "vexxhost-ci\\[bot\\]:.*/check:success"
         open: True
@@ -38,6 +64,14 @@
         label:
         - review/approved
     trigger:
+      gerrithub:
+        - event: comment-added
+          approval:
+            - Workflow: 1
+        - event: comment-added
+          approval:
+            - Verified: 1
+          username: vexxhost-cd
       github:
         - event: pull_request
           action: status
@@ -52,11 +86,16 @@
         comment: false
     success:
       sql:
+      gerrithub:
+        Verified: 2
+        submit: true
       github:
         status: success
         merge: true
     failure:
       sql:
+      gerrithub:
+        Verified: -2
       github:
         status: failure
 
