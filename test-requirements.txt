@@ -7,6 +7,6 @@ flake8
 # picks the latest version which is not known to work yet.
 ansible>=2.5.1,<2.6
 ansible-lint<4
-hacking>=1.1.0,<2.0.0
+hacking>=8.1.0,<8.2.0
 bashate>=0.2
 zuul-sphinx>=0.1.1
